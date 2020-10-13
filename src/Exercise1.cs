@@ -34,17 +34,20 @@ namespace CodeTest
                 new Buddy(9, "Sergey", "Ukraine")
             };
             ConsoleTools.WriteCollection(buddiesAll);
+            // [1=Sylvester (UK), 7=Bogdan (Poland), 3=Mark (UK), 2=Robert (Poland), 6=Akos (UK), 9=Sergey (Ukraine)]
 
             // -- Linq Select ---------------------------
             IEnumerable<string> namelist = buddiesAll
                 .Select(buddy => buddy.Name);
             ConsoleTools.WriteCollection(namelist);
+            // [Sylvester, Bogdan, Mark, Robert, Akos, Sergey]
 
             // -- Linq Distinct ---------------------------
             var countries = buddiesAll
                 .Select(buddy => buddy.Country)
                 .Distinct();
             ConsoleTools.WriteCollection(countries);
+            // [UK, Poland, Ukraine]
 
             // -- Linq Aggreagate ---------------------------
             var buddiesByCountry = buddiesAll
@@ -62,16 +65,19 @@ namespace CodeTest
             var printlist = buddiesByCountry
                 .Select(pair => $"{pair.Key}={pair.Value}");
             ConsoleTools.WriteCollection(printlist);
+            // [UK=3, Poland=2, Ukraine=1]
 
             // -- Linq Where ---------------------------
             var polishBuddies = buddiesAll
                 .Where(buddy=>buddy.Country == "Poland");
             ConsoleTools.WriteCollection(polishBuddies);
+            // [7=Bogdan (Poland), 2=Robert (Poland)]
 
             // -- Linq Count ---------------------------
             var polishBuddiesCounter = buddiesAll
                 .Count(buddy=>buddy.Country == "Poland");
             Console.WriteLine(polishBuddiesCounter);
+            // 2
         }
     }
 }
