@@ -78,6 +78,12 @@ namespace CodeTest
                 .Count(buddy=>buddy.Country == "Poland");
             Console.WriteLine(polishBuddiesCounter);
             // 2
+
+            // -- PLAN ---------------------------
+            // TODO: All
+            // TODO: Max / Average / Sum
+            // TODO: OrderByDescending (Country) ThenBy (Name)
+            // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
         }
     }
 }
