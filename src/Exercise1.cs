@@ -28,9 +28,9 @@ namespace CodeTest
             var buddiesAll = new List<Buddy>() {
                 new Buddy(1, "Sylvester", "UK"),
                 new Buddy(7, "Bogdan", "Poland"),
-                new Buddy(3, "Daniel", "UK"),
+                new Buddy(3, "Mark", "UK"),
                 new Buddy(2, "Robert", "Poland")
-            };
+           };
             ConsoleTools.WriteCollection(buddiesAll);
 
             // -- Linq Select ---------------------------
@@ -40,6 +40,22 @@ namespace CodeTest
             // -- Linq Distinct ---------------------------
             var countries = buddiesAll.Select(bu=>bu.Country).Distinct();
             ConsoleTools.WriteCollection(countries);
+
+            // -- Linq Aggreagate ---------------------------
+            var buddiesInCountries = buddiesAll.Aggregate<Buddy, Dictionary<string,int>>(
+                new Dictionary<string,int>(),
+                (dict, buddy) => {
+                    if (dict.ContainsKey(buddy.Country))
+                        dict[buddy.Country] += 1;
+                    else   
+                        dict[buddy.Country] = 1;
+                    return dict;
+                }
+            );
+            var counterList = buddiesInCountries.Select(
+                pair=>$"{pair.Key}={pair.Value}"
+            );
+            ConsoleTools.WriteCollection(counterList);
         }
     }
 }
