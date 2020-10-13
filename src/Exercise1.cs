@@ -32,6 +32,10 @@ namespace CodeTest
                 new Foo(2, "Robert", "Poland")
             };
             ConsoleTools.WriteCollection(list);
+            
+            // -- Linq select ---------------------------
+            var list2 = list.Select(it => it.No);
+            ConsoleTools.WriteCollection(list2);
         }
     }
 }
