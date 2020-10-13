@@ -29,33 +29,39 @@ namespace CodeTest
                 new Buddy(1, "Sylvester", "UK"),
                 new Buddy(7, "Bogdan", "Poland"),
                 new Buddy(3, "Mark", "UK"),
-                new Buddy(2, "Robert", "Poland")
-           };
+                new Buddy(2, "Robert", "Poland"),
+                new Buddy(6, "Akos", "UK"),
+                new Buddy(9, "Sergey", "Ukraine")
+            };
             ConsoleTools.WriteCollection(buddiesAll);
 
             // -- Linq Select ---------------------------
-            IEnumerable<string> namelist = buddiesAll.Select(it => it.Name);
+            IEnumerable<string> namelist = buddiesAll
+                .Select(buddy => buddy.Name);
             ConsoleTools.WriteCollection(namelist);
 
             // -- Linq Distinct ---------------------------
-            var countries = buddiesAll.Select(bu=>bu.Country).Distinct();
+            var countries = buddiesAll
+                .Select(buddy => buddy.Country)
+                .Distinct();
             ConsoleTools.WriteCollection(countries);
 
             // -- Linq Aggreagate ---------------------------
-            var buddiesInCountries = buddiesAll.Aggregate<Buddy, Dictionary<string,int>>(
-                new Dictionary<string,int>(),
-                (dict, buddy) => {
-                    if (dict.ContainsKey(buddy.Country))
-                        dict[buddy.Country] += 1;
-                    else   
-                        dict[buddy.Country] = 1;
-                    return dict;
-                }
-            );
-            var counterList = buddiesInCountries.Select(
-                pair=>$"{pair.Key}={pair.Value}"
-            );
-            ConsoleTools.WriteCollection(counterList);
+            var buddiesByCountry = buddiesAll
+                .Aggregate<Buddy, Dictionary<string, int>>(
+                    new Dictionary<string, int>(),
+                    (dict, buddy) =>
+                    {
+                        if (dict.ContainsKey(buddy.Country))
+                            dict[buddy.Country] += 1;
+                        else
+                            dict[buddy.Country] = 1;
+                        return dict;
+                    }
+                );
+            var printlist = buddiesByCountry
+                .Select(pair => $"{pair.Key}={pair.Value}");
+            ConsoleTools.WriteCollection(printlist);
         }
     }
 }
