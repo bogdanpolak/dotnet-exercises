@@ -62,6 +62,11 @@ namespace CodeTest
             var printlist = buddiesByCountry
                 .Select(pair => $"{pair.Key}={pair.Value}");
             ConsoleTools.WriteCollection(printlist);
+
+            // -- Linq Where ---------------------------
+            var polishBuddies = buddiesAll
+                .Where(buddy=>buddy.Country == "Poland");
+            ConsoleTools.WriteCollection(polishBuddies);
         }
     }
 }
