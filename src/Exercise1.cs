@@ -67,6 +67,11 @@ namespace CodeTest
             var polishBuddies = buddiesAll
                 .Where(buddy=>buddy.Country == "Poland");
             ConsoleTools.WriteCollection(polishBuddies);
+
+            // -- Linq Count ---------------------------
+            var polishBuddiesCounter = buddiesAll
+                .Count(buddy=>buddy.Country == "Poland");
+            Console.WriteLine(polishBuddiesCounter);
         }
     }
 }
