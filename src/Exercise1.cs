@@ -31,9 +31,7 @@ namespace CodeTest
                 new Foo(3, "Daniel", "UK"),
                 new Foo(2, "Robert", "Poland")
             };
-            var length = list.Count;
-            var date = DateTime.Now;
-            Console.WriteLine($"Collection lenght: {length}  [{date:t}]");
+            ConsoleTools.WriteCollection(list);
         }
     }
 }
