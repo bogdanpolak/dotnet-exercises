@@ -6,36 +6,36 @@ using System.Text;
 namespace CodeTest
 {
 
-    public class Foo
+    public class Buddy
     {
-        public int No { get; private set; }
-        public string Text { get; private set; }
+        public int NO { get; private set; }
+        public string Name { get; private set; }
         public string Country { get; private set; }
-        public Foo() { }
-        public Foo(int no, string text, string country)
+        public Buddy() { }
+        public Buddy(int no, string text, string country)
         {
-            No = no;
-            Text = text;
+            NO = no;
+            Name = text;
             Country = country;
         }
-        public override string ToString() => $"{No}={Text} ({Country})";
+        public override string ToString() => $"{NO}={Name} ({Country})";
     }
 
     public class Exercise1
     {
         public void Run()
         {
-            var list = new List<Foo>() {
-                new Foo(1, "Sylvester", "UK"),
-                new Foo(7, "Bogdan", "Poland"),
-                new Foo(3, "Daniel", "UK"),
-                new Foo(2, "Robert", "Poland")
+            var buddiesAll = new List<Buddy>() {
+                new Buddy(1, "Sylvester", "UK"),
+                new Buddy(7, "Bogdan", "Poland"),
+                new Buddy(3, "Daniel", "UK"),
+                new Buddy(2, "Robert", "Poland")
             };
-            ConsoleTools.WriteCollection(list);
-            
+            ConsoleTools.WriteCollection(buddiesAll);
+
             // -- Linq select ---------------------------
-            var list2 = list.Select(it => it.No);
-            ConsoleTools.WriteCollection(list2);
+            IEnumerable<string> namelist = buddiesAll.Select(it => it.Name);
+            ConsoleTools.WriteCollection(namelist);
         }
     }
 }
