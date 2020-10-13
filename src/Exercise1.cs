@@ -33,9 +33,13 @@ namespace CodeTest
             };
             ConsoleTools.WriteCollection(buddiesAll);
 
-            // -- Linq select ---------------------------
+            // -- Linq Select ---------------------------
             IEnumerable<string> namelist = buddiesAll.Select(it => it.Name);
             ConsoleTools.WriteCollection(namelist);
+
+            // -- Linq Distinct ---------------------------
+            var countries = buddiesAll.Select(bu=>bu.Country).Distinct();
+            ConsoleTools.WriteCollection(countries);
         }
     }
 }
