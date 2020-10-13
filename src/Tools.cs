@@ -15,7 +15,8 @@ namespace CodeTest
     {
         public static void WriteCollection<T>(IEnumerable<T> list)
         {
-            Console.WriteLine("[" + list.BuildString(", ") + "]");
+            // using extention: Console.WriteLine("[" + list.BuildString(", ") + "]");
+            Console.WriteLine("[" + string.Join(", ", list) + "]");
         }
     }
 
