@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CodeTest
 {
@@ -35,11 +34,11 @@ namespace CodeTest
         {
             var buddies = new List<Buddy>() {
                 new Buddy(1, "Sylvester", "UK"),
-                new Buddy(7, "Bogdan", "Poland", 51000),
-                new Buddy(3, "Mark", "UK", 65000),
-                new Buddy(2, "Robert", "Poland", 43000),
-                new Buddy(6, "Akos", "UK", 49000),
-                new Buddy(9, "Sergey", "Ukraine", 34000)
+                new Buddy(7, "Bogdan", "Poland", 51000.00m),
+                new Buddy(3, "Mark", "UK", 65000.00m),
+                new Buddy(2, "Robert", "Poland", 43000.00m),
+                new Buddy(6, "Akos", "UK", 49000.00m),
+                new Buddy(9, "Sergey", "Ukraine", 34000.00m)
             };
             ConsoleTools.WriteCollection(buddies);
             Snippet_LinqSelect(buddies);
@@ -50,11 +49,9 @@ namespace CodeTest
             Snippet_LinqAll(buddies);
             Snippet_LinqSumAvgMax(buddies);
             Snippet_LinqOrderByDescending_ThenBy(buddies);
-
-            // TODO: #1 Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
         }
 
-        private void Snippet_LinqSelect(IList<Buddy> buddies)
+        private void Snippet_LinqSelect(List<Buddy> buddies)
         {
             IEnumerable<string> namelist = buddies
                 .Select(buddy => buddy.Name);
