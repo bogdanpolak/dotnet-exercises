@@ -103,8 +103,13 @@ namespace CodeTest
             Console.WriteLine($"Total: {total:n0}  Average: {avg:n0}  Maximum: {max:n0}");
             // Total: 242,000  Average: 48,400  Maximum: 65,000
    
+            // -- Linq OrderByDescending, ThenBy ---------------------------
+            var buddiesOrdered = buddiesAll
+                .OrderByDescending(buddy=>buddy.Country)
+                .ThenBy(buddy=>buddy.Name);
+            ConsoleTools.WriteCollection(buddiesOrdered);
+            // [9=Sergey (Ukraine), 6=Akos (UK), 3=Mark (UK), 1=Sylvester (UK), 7=Bogdan (Poland), 2=Robert (Poland)]
 
-            // TODO: OrderByDescending (Country) ThenBy (Name)
             // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
         }
     }
