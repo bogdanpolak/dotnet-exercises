@@ -79,8 +79,13 @@ namespace CodeTest
             Console.WriteLine(polishBuddiesCounter);
             // 2
 
-            // -- PLAN ---------------------------
-            // TODO: All
+            // -- Linq All ---------------------------
+            var onlyBritishBuddies = buddiesAll.All(buddy=>buddy.Country=="UK");
+            var msg = onlyBritishBuddies ? "I can speak only English" : "I'm a polyglot";
+            Console.WriteLine(msg);
+            // I'm a polyglot
+
+
             // TODO: Max / Average / Sum
             // TODO: OrderByDescending (Country) ThenBy (Name)
             // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
