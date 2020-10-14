@@ -33,7 +33,7 @@ namespace CodeTest
     {
         public void Run()
         {
-            var buddiesAll = new List<Buddy>() {
+            var buddies = new List<Buddy>() {
                 new Buddy(1, "Sylvester", "UK"),
                 new Buddy(7, "Bogdan", "Poland", 51000),
                 new Buddy(3, "Mark", "UK", 65000),
@@ -41,24 +41,39 @@ namespace CodeTest
                 new Buddy(6, "Akos", "UK", 49000),
                 new Buddy(9, "Sergey", "Ukraine", 34000)
             };
-            ConsoleTools.WriteCollection(buddiesAll);
-            // [1=Sylvester (UK), 7=Bogdan (Poland), 3=Mark (UK), 2=Robert (Poland), 6=Akos (UK), 9=Sergey (Ukraine)]
+            ConsoleTools.WriteCollection(buddies);
+            Snippet_LinqSelect(buddies);
+            Snippet_LinqDistinct(buddies);
+            Snippet_LinqAggregate(buddies);
+            Snippet_LinqWhere(buddies);
+            Snippet_LinqCount(buddies);
+            Snippet_LinqAll(buddies);
+            Snippet_LinqSumAvgMax(buddies);
+            Snippet_LinqOrderByDescending_ThenBy(buddies);
 
-            // -- Linq Select ---------------------------
-            IEnumerable<string> namelist = buddiesAll
+            // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
+        }
+
+        private void Snippet_LinqSelect(IList<Buddy> buddies)
+        {
+            IEnumerable<string> namelist = buddies
                 .Select(buddy => buddy.Name);
             ConsoleTools.WriteCollection(namelist);
             // [Sylvester, Bogdan, Mark, Robert, Akos, Sergey]
+        }
 
-            // -- Linq Distinct ---------------------------
-            var countries = buddiesAll
+        private void Snippet_LinqDistinct(List<Buddy> buddies)
+        {
+            var countries = buddies
                 .Select(buddy => buddy.Country)
                 .Distinct();
             ConsoleTools.WriteCollection(countries);
             // [UK, Poland, Ukraine]
+        }
 
-            // -- Linq Aggreagate ---------------------------
-            var buddiesByCountry = buddiesAll
+        private void Snippet_LinqAggregate(List<Buddy> buddies)
+        {
+            var buddiesByCountry = buddies
                 .Aggregate<Buddy, Dictionary<string, int>>(
                     new Dictionary<string, int>(),
                     (dict, buddy) =>
@@ -74,43 +89,51 @@ namespace CodeTest
                 .Select(pair => $"{pair.Key}={pair.Value}");
             ConsoleTools.WriteCollection(printlist);
             // [UK=3, Poland=2, Ukraine=1]
+        }
 
-            // -- Linq Where ---------------------------
-            var polishBuddies = buddiesAll
-                .Where(buddy=>buddy.Country == "Poland");
+        private void Snippet_LinqWhere(List<Buddy> buddies)
+        {
+            var polishBuddies = buddies
+                .Where(buddy => buddy.Country == "Poland");
             ConsoleTools.WriteCollection(polishBuddies);
             // [7=Bogdan (Poland), 2=Robert (Poland)]
+        }
 
-            // -- Linq Count ---------------------------
-            var polishBuddiesCounter = buddiesAll
-                .Count(buddy=>buddy.Country == "Poland");
+        private void Snippet_LinqCount(List<Buddy> buddies)
+        {
+            var polishBuddiesCounter = buddies
+                .Count(buddy => buddy.Country == "Poland");
             Console.WriteLine(polishBuddiesCounter);
             // 2
+        }
 
-            // -- Linq All ---------------------------
-            var onlyBritishBuddies = buddiesAll.All(buddy=>buddy.Country=="UK");
+        private void Snippet_LinqAll(List<Buddy> buddiesAll)
+        {
+            var onlyBritishBuddies = buddiesAll.All(buddy => buddy.Country == "UK");
             var msg = onlyBritishBuddies ? "I can speak only English" : "I'm a polyglot";
             Console.WriteLine(msg);
             // I'm a polyglot
+        }
 
-            // -- Linq Sum, Average, Max ---------------------------
-            var total = buddiesAll.Where(buddy=>buddy.Salary.HasValue)
-                .Sum(buddy=>buddy.Salary.Value);
-            var avg = buddiesAll.Where(buddy=>buddy.Salary.HasValue)
-                .Average(buddy=>buddy.Salary.Value);
-            var max = buddiesAll.Where(buddy=>buddy.Salary.HasValue)
-                .Max(buddy=>buddy.Salary.Value);
+        private void Snippet_LinqSumAvgMax(List<Buddy> buddies)
+        {
+            var total = buddies.Where(buddy => buddy.Salary.HasValue)
+                .Sum(buddy => buddy.Salary.Value);
+            var avg = buddies.Where(buddy => buddy.Salary.HasValue)
+                .Average(buddy => buddy.Salary.Value);
+            var max = buddies.Where(buddy => buddy.Salary.HasValue)
+                .Max(buddy => buddy.Salary.Value);
             Console.WriteLine($"Total: {total:n0}  Average: {avg:n0}  Maximum: {max:n0}");
             // Total: 242,000  Average: 48,400  Maximum: 65,000
-   
-            // -- Linq OrderByDescending, ThenBy ---------------------------
-            var buddiesOrdered = buddiesAll
-                .OrderByDescending(buddy=>buddy.Country)
-                .ThenBy(buddy=>buddy.Name);
+        }
+
+        private void Snippet_LinqOrderByDescending_ThenBy(List<Buddy> buddies)
+        {
+            var buddiesOrdered = buddies
+                .OrderByDescending(buddy => buddy.Country)
+                .ThenBy(buddy => buddy.Name);
             ConsoleTools.WriteCollection(buddiesOrdered);
             // [9=Sergey (Ukraine), 6=Akos (UK), 3=Mark (UK), 1=Sylvester (UK), 7=Bogdan (Poland), 2=Robert (Poland)]
-
-            // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
         }
     }
 }
