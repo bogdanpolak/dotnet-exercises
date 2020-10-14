@@ -51,7 +51,7 @@ namespace CodeTest
             Snippet_LinqSumAvgMax(buddies);
             Snippet_LinqOrderByDescending_ThenBy(buddies);
 
-            // TODO: Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
+            // TODO: #1 Intersect https://docs.microsoft.com/pl-pl/dotnet/api/system.linq.enumerable.intersect?view=netcore-3.1
         }
 
         private void Snippet_LinqSelect(IList<Buddy> buddies)
