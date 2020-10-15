@@ -7,9 +7,9 @@ namespace CodeTest
 
     public class Buddy
     {
-        public int NO { get; private set; }
-        public string Name { get; private set; }
-        public string Country { get; private set; }
+        public int NO { get; }
+        public string Name { get; }
+        public string Country { get; }
         public Nullable<decimal> Salary { get; private set; }
         public Buddy() { }
         public Buddy(int no, string text, string country)
