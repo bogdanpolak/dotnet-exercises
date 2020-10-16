@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CodeTest
+namespace DotNetExercises
 {
     public static class IEnumerableExtensions
     {

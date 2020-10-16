@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace CodeTest
+namespace DotNetExercises
 {
     public class Product
     {
