@@ -13,13 +13,13 @@ namespace CodeTest
         // tartare or pancake
         // MAINS
         // risotto, salmon or lamb
-        // DESERTS
+        // DESSERTS
         // icecream
 
         Dictionary<string, List<string>> MENU = new Dictionary<string, List<string>> {
             { "starters", new List<string>(){ "tartare", "pancake", "salad" } },
             { "mains", new List<string>(){ "risotto", "lamb", "haddock", "salmon", "steak" } },
-            { "deserts", new List<string>(){ "sorbet", "icecream", "cheesecake" } }
+            { "desserts", new List<string>(){ "sorbet", "icecream", "cheesecake" } }
         };
         List<string> CHEFS_DISHES = new List<string>() {
             "tartare","risotto","salmon","icecream","pancake","lamb"};
