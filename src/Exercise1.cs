@@ -32,7 +32,7 @@ namespace DotNetExercises
     {
         public void Run()
         {
-            var buddies = new List<Buddy>() {
+            var buddies = new List<Buddy> {
                 new Buddy(1, "Sylvester", "UK"),
                 new Buddy(7, "Bogdan", "Poland", 51000.00m),
                 new Buddy(3, "Mark", "UK", 65000.00m),
