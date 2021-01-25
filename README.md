@@ -49,3 +49,23 @@ Any:
 ```
 var buddiesFromUK = buddiesAll.All(buddy => buddy.Country == "UK");
 ```
+
+## Exercise 2 - LINQ
+
+Intersect:
+
+```
+Product[] store1 = {
+    new Product { Name = "apple", Code = 9 },
+    new Product { Name = "orange", Code = 4 }, 
+    new Product { Name = "lemon", Code = 29 }, 
+    new Product { Name = "bannanas", Code = 7 } 
+};
+Product[] store2 = {
+    new Product { Name = "apple", Code = 9 },
+    new Product { Name = "lemon", Code = 12 }, 
+    new Product { Name = "pinapple", Code = 15 },
+    new Product { Name = "bannanas", Code = 7 },
+};
+var duplicates = store1.Intersect(store2);
+```
