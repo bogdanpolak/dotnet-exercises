@@ -69,3 +69,47 @@ Product[] store2 = {
 };
 var duplicates = store1.Intersect(store2);
 ```
+
+## Code Interview Exercise
+
+Menu (restaurant):
+
+```
+var Menu = new Dictionary<string, List<string>> {
+    { "starters", new List<string>(){ 
+                "tartare", "pancake", "salad" } },
+    { "mains", new List<string>(){ 
+                "risotto", "lamb", "haddock", "salmon", "steak" } },
+    { "desserts", new List<string>(){ 
+                "sorbet", "icecream", "cheesecake" } }
+};
+```
+
+List of dishes served by chef
+
+```
+var ChefMartinDishes = new List<string>() {
+    "tartare", "risotto", "salmon", 
+    "icecream", "pancake", "lamb"
+};
+```
+
+Generate Menu items served by chef:
+
+```
+public string GenerateServed(string category)
+{
+    var list = Menu[category]
+        .Intersect(ChefMartinDishes)
+        .ToList();
+    var sb = new StringBuilder();
+    for (var i = 0; i < list.Count; i++) {
+        if (i>0 && i == list.Count - 1)
+            sb.Append(" or ");
+        else if (i > 0)
+            sb.Append(", ");
+        sb.Append(list[i]);
+    }
+    return sb.ToString();
+}
+```
